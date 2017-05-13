@@ -11,6 +11,7 @@
       <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
     </ul>
     <h2>Ecosystem</h2>
+    <h3 class="test"> 冶器物件</h3>
     <ul>
       <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
       <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
@@ -50,4 +51,9 @@ li {
 a {
   color: #42b983;
 }
+</style>
+
+<style scoped lang="sass">
+.test
+  color: red
 </style>
