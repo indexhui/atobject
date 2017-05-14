@@ -27,15 +27,16 @@
 </template>
 
 <script>
-import images from '../assets/images';
+// import images from 'static/images';
 
 export default {
   name: 'hello',
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',
-      hello1: images.hello1,
-      hello2: images.hello2,
+      hello1: 'static/images/home/hello_1.png',
+      hello2: 'static/images/home/hello_2.png',
+      hello3: 'static/images/home/hello_3.png',
     };
   },
 };

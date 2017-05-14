@@ -18,7 +18,7 @@
 
 import Hello from '@/components/Hello';
 import NavBar from '@/components/NavBar';
-import images from '../assets/images';
+// import images from '../assets/images';
 
 export default {
   name: 'home-page',
@@ -29,8 +29,8 @@ export default {
   extends: {
     data() {
       return {
-        hero: images.hero,
-        logo: images.logo,
+        hero: 'static/images/home/hero.png',
+        logo: 'static/images/logo.png',
       };
     },
   },
