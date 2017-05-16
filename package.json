@@ -11,6 +11,8 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "airtable": "^0.4.5",
+    "lodash": "^4.17.4",
     "node-sass": "^4.5.1",
     "sanitize.css": "^5.0.0",
     "sass-loader": "^6.0.5",
