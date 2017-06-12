@@ -4,8 +4,9 @@
     <img src='../assets/logo.png'>
   </div>
   <nav>
-  <a href="">冶器見學</a>
-  <a href="">冶器見學</a>
+  <a href="">冶器物件</a>
+  <router-link to="course">冶器課程</router-link>
+  <a href="">冶器課程</a>
   <a href="">冶器見學</a>
   <a href="">冶器見學</a>
   </nav>

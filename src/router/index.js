@@ -1,19 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-// import Hello from '@/components/Hello';
+
 import Home from '@/pages/Home';
+import Course from '@/pages/Course';
+import Class1 from '@/pages/Class1';
 
 Vue.use(Router);
-
-// export default new Router({
-//   routes: [
-//     {
-//       path: '/',
-//       name: 'Hello',
-//       component: Hello,
-//     },
-//   ],
-// });
 
 const routes = [
   {
@@ -21,31 +13,16 @@ const routes = [
     name: 'Home',
     component: Home,
   },
-  // {
-  //   path: '/sponser',
-  //   name: 'Sponser',
-  //   component: Sponser,
-  // },
-  // {
-  //   path: '/academic',
-  //   name: 'Academic',
-  //   component: Academic,
-  // },
-  // {
-  //   path: '/artproject_bien',
-  //   name: 'artproject_bien',
-  //   component: ArtprojectBien,
-  // },
-  // {
-  //   path: '/artproject_Xing',
-  //   name: 'artproject_Xing',
-  //   component: ArtprojectXing,
-  // },
-  // {
-  //   path: '/Q&A',
-  //   name: 'Q&A',
-  //   component: Qa,
-  // },
+  {
+    path: '/course',
+    name: 'Course',
+    component: Course,
+  },
+  {
+    path: '/class1',
+    name: 'Class1',
+    component: Class1,
+  },
 ];
 
 

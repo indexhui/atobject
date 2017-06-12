@@ -2,18 +2,8 @@
   <transition appear name="fade">
     <div>
       <navBar></navBar>
-      <div
-        class="hero"
-        :style="{ 'background-image': 'url(' + hero + ')' }"
-      >
-      </div>
-      <hello></hello>
-      <bloger></bloger>
-
       <div class="course">
         <div class="container">
-          <div class="h2">冶器課程</div>
-          <hr>
           <div class="subject_intro">
             <md-layout md-gutter>
 
@@ -30,24 +20,46 @@
                     課程人數：四人開班，最多六人<br/>
                     課程講師：王安琪<br/>
                   </div>
-                  <div class="link">
-                    <router-link to="/course" class="btn">課程介紹</router-link>
-                    <a class="btn" href="https://www.facebook.com/atobject/?fref=ts">粉專報名</a>
-                  </div>
                 </div>
               </md-layout>
 
               <md-layout
               md-flex-xsmall="100"
               class="subject_bg"
-              :style="{ 'background-image': 'url(' + course + ')' }"
+              :style="{ 'background-image': 'url(' + courseImg + ')' }"
               >
               </md-layout>
-
             </md-layout>
           </div>
-          <router-link to="course" class="btn">全部課程 -></router-link>
-          <hr>
+          <div v-for="s in class1">
+              <div v-if="s.ImgCourse[0]">
+                {{s.ImgCourse[0].filename}}
+                <div
+                  class="imgCourse"
+                  :style="{ 'background-image': 'url(' + s.ImgCourse[0].thumbnails.large.url + ')' }"
+                >
+                </div>
+              </div>
+              <div v-if="s.ImgCourse[1]">
+                {{s.ImgCourse[1].filename}}
+                 <div
+                  class="imgCourse"
+                  :style="{ 'background-image': 'url(' + s.ImgCourse[1].thumbnails.large.url + ')' }"
+                >
+                </div>
+              </div>
+              <div v-if="s.ImgCourse[2]">
+                {{s.ImgCourse[2].filename}}
+                 <div
+                  class="imgCourse"
+                  :style="{ 'background-image': 'url(' + s.ImgCourse[2].thumbnails.large.url + ')' }"
+                >
+                </div>
+              </div>
+          </div>
+          <div>學生作品</div>
+          <div>報名一律私訊粉絲轉頁</div>
+          <div>前往粉專報名</div>
         </div>
       </div>
 
@@ -56,28 +68,56 @@
 </template>
 
 <script>
-// eslint-disable-next-line import/no-webpack-loader-syntax
-// import Pace from 'imports-loader?define=>false!pace-progress';
-
-import Hello from '@/components/Hello';
+import { map, set } from 'lodash';
+import Airtable from 'airtable';
 import NavBar from '@/components/NavBar';
-import Bloger from '@/components/Bloger';
-// import images from '../assets/images';
+
+const base = new Airtable({ apiKey: 'keyNCBsmapwe9NAJ7' }).base('appQUK6jNfTjos38j');
 
 export default {
-  name: 'home-page',
+  name: 'class1',
   components: {
-    Hello,
     NavBar,
-    Bloger,
   },
-  extends: {
-    data() {
-      return {
-        hero: 'static/images/home/hero.png',
-        logo: 'static/images/logo.png',
-        course: 'static/images/home/level1.png',
-      };
+  data() {
+    return {
+      course: [],
+      active: {},
+      hero: 'static/images/home/hero.png',
+      logo: 'static/images/logo.png',
+      courseImg: 'static/images/home/level1.png',
+    };
+  },
+  created() {
+    this.syncAirtable();
+  },
+  computed: {
+    on() {
+      return this.course.filter(spnsor => spnsor.Class[0] === 'on');
+    },
+    class1() {
+      return this.course.filter(spnsor => spnsor.Course === '基礎金工密集班');
+    },
+  },
+  methods: {
+    syncAirtable() {
+      // console.log('||||| syncAirtable()...');
+      let item = [];
+      base('課程').select({
+        // maxRecords: 100,
+        view: 'Grid view',
+      }).eachPage((records, fetchNextPage) => {
+        // console.log(records);
+        item = item.concat(map(records, record => set(record.fields, 'id', record.id)));
+        fetchNextPage();
+      }, (err) => {
+        if (err) {
+          // console.error(err);
+          return;
+        }
+        this.course = item;
+        // console.log('||||| Retrieved: ', this.sponsors);
+      });
     },
   },
 };
@@ -150,22 +190,12 @@ export default {
   padding-top: 20px
 .btn
   text-align: right
-  display: block
-  color: black
 .container
   margin: 0 24px
-.btn
-  color: #919191
-  border: 1px solid #919191
-  padding: 4px 16px
-  margin-right: 12px
-  display: inline-block
-  &:hover
-    text-decoration: none
-.link
-  margin-top: 24px
-a:not(.md-button):not(.md-bottom-bar-item):hover
-  text-decoration: none !important
+.imgCourse
+  @extend ._bcg-cover
+  height: 300px
+  width: 400px
 @media only screen and (max-width: 600px)
   .subject_bg
     height: 300px
