@@ -6,7 +6,6 @@
         <div class="container">
           <div class="subject_intro">
             <md-layout md-gutter>
-
               <md-layout md-column md-gutter class="text">
                 <div class="text">
                   <div class="subject">基礎金工創作班</div>
@@ -33,6 +32,7 @@
           </div>
           <div v-for="s in class1">
               <div v-if="s.ImgCourse[0]">
+              d
                 {{s.ImgCourse[0].filename}}
                 <div
                   class="imgCourse"
@@ -88,7 +88,29 @@ import { map, set } from 'lodash';
 import Airtable from 'airtable';
 import NavBar from '@/components/NavBar';
 
+let item = [];
 const base = new Airtable({ apiKey: 'keyNCBsmapwe9NAJ7' }).base('appyDZKIS0YkuSMAh');
+
+const syncAirtable = (cb) => {
+  // console.log('||||| syncAirtable()...');
+  base('課程').select({
+    // maxRecords: 100,
+    view: 'Grid view',
+  }).eachPage((records, fetchNextPage) => {
+    // console.log(records);
+    item = item.concat(map(records, record => set(record.fields, 'id', record.id)));
+    fetchNextPage();
+  }, (err) => {
+    if (err) {
+      // console.error(err);
+      return;
+    }
+    // console.log('||||| Retrieved: ', this.sponsors);
+    if (cb) {
+      cb();
+    }
+  });
+};
 
 export default {
   name: 'class1',
@@ -104,36 +126,37 @@ export default {
       courseImg: 'static/images/home/level1.png',
     };
   },
+  beforeRouteEnter(to, from, next) {
+    syncAirtable(next);
+    // next();
+  },
+  head: {
+    meta() {
+      console.log('meta');
+      return [
+        { name: 'og:image', content: this.class1.ImgCourse[0].thumbnails.large.url },
+        { name: 'KeyWords', content: '英國投資, 海外房地產, 英國房地產' },
+        { name: 'description', content: '冶器物件 金工教學' },
+      ];
+    },
+  },
   created() {
-    this.syncAirtable();
+    // this.syncAirtable();
+    this.course = item;
+    console.log(item);
   },
   computed: {
     on() {
       return this.course.filter(spnsor => spnsor.Class[0] === 'on');
     },
     class1() {
-      return this.course.filter(spnsor => spnsor.Course === '基礎金工密集班');
+      return this.course.filter(spnsor => spnsor.Route === 'class1');
     },
   },
   methods: {
-    syncAirtable() {
-      // console.log('||||| syncAirtable()...');
-      let item = [];
-      base('課程').select({
-        // maxRecords: 100,
-        view: 'Grid view',
-      }).eachPage((records, fetchNextPage) => {
-        // console.log(records);
-        item = item.concat(map(records, record => set(record.fields, 'id', record.id)));
-        fetchNextPage();
-      }, (err) => {
-        if (err) {
-          // console.error(err);
-          return;
-        }
-        this.course = item;
-        // console.log('||||| Retrieved: ', this.sponsors);
-      });
+    setCourse() {
+      this.course = item;
+      console.log(item);
     },
   },
 };

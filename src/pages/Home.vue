@@ -87,6 +87,26 @@ export default {
         course: 'static/images/home/level1.png',
       };
     },
+    head: {
+      title: {
+        inner: '冶器物件',
+      },
+      meta: [
+      { name: 'application-name', content: '冶器物件' },
+      { name: 'description', content: '冶器物件 金工教學', id: 'desc' }, // id to replace intead of create element
+      // ...
+      // Google+ / Schema.org
+      { itemprop: 'name', content: 'Content Title' },
+      { itemprop: 'description', content: 'Content Title' },
+      // ...
+      // Facebook / Open Graph
+      { property: 'fb:app_id', content: '123456789' },
+      { property: 'og:title', content: '冶器物件' },
+      // with shorthand
+      { p: 'og:image', c: 'https://example.com/image.jpg' },
+      // ...
+      ],
+    },
   },
 };
 </script>

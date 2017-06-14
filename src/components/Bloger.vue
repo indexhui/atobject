@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="h2">冶氣見學</div>
+    <div class="h2">冶器見學</div>
   <section>
     <div class="container">
       <md-layout :md-gutte-smallr="16">

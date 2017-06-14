@@ -4,6 +4,7 @@ import Vue from 'vue';
 import 'sanitize.css/sanitize.css';
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.css';
+import VueHead from 'vue-head';
 
 import router from './router';
 import App from './App';
@@ -11,6 +12,7 @@ import App from './App';
 Vue.config.productionTip = false;
 
 Vue.use(VueMaterial);
+Vue.use(VueHead);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

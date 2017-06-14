@@ -4,7 +4,7 @@
     <navBar></navBar>
     <div class="course">
       <div class="container">
-        <div class="h2">冶器課程</div>
+        <div class="h2">報名中的課程</div>
         <hr>
         <div class="subject_intro">
           <md-layout md-gutter v-for="s in on" class="course" :key="s.id">
