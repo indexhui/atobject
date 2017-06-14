@@ -1,14 +1,14 @@
 <template>
   <div class="hello">
-  <div class="logo">
-    <img src='../assets/logo.png'>
-  </div>
+  <router-link to="/" class="logo">
+    <img :src="logo">
+  </router-link>
   <nav>
-  <a href="">冶器物件</a>
-  <router-link to="course">冶器課程</router-link>
-  <a href="">冶器課程</a>
-  <a href="">冶器見學</a>
-  <a href="">冶器見學</a>
+    <router-link to="course">冶器課程</router-link>
+    <a href="">冶器見學</a>
+    <a href="">工藝家們</a>
+    <a href="">關於冶器</a>
+    <a href="">粉絲專頁</a>
   </nav>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
   name: 'hello',
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      logo: 'static/images/logo.png',
     };
   },
 };
@@ -46,6 +46,23 @@ a {
 </style>
 
 <style scoped lang="sass">
+@import '../sass/settings'
+// @import url(//fonts.googleapis.com/earlyaccess/cwtexkai.css)
+@import url(//fonts.googleapis.com/earlyaccess/cwtexfangsong.css)
 .test
   color: red
+a
+  color: #000
+.logo
+  img
+    width: 100px
+nav
+  margin: 20px 0
+  a
+    margin: 0 10px
+    padding: 5px 5px
+    font-size: 1.4em
+    color: #272727
+    font-family: 'cwTeXFangSong', serif
+    font-weight: 300
 </style>

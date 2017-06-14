@@ -7,8 +7,13 @@
         :style="{ 'background-image': 'url(' + hero + ')' }"
       >
       </div>
-      <hello></hello>
-      <bloger></bloger>
+      <div
+        class="bg"
+        :style="{ 'background-image': 'url(' + bg + ')' }"
+      >
+        <hello></hello>
+        <bloger></bloger>
+      </div>
 
       <div class="course">
         <div class="container">
@@ -50,7 +55,7 @@
           <hr>
         </div>
       </div>
-
+      <foot></foot>
     </div>
   </transition>
 </template>
@@ -62,6 +67,7 @@
 import Hello from '@/components/Hello';
 import NavBar from '@/components/NavBar';
 import Bloger from '@/components/Bloger';
+import Foot from '@/components/Footer';
 // import images from '../assets/images';
 
 export default {
@@ -70,11 +76,13 @@ export default {
     Hello,
     NavBar,
     Bloger,
+    Foot,
   },
   extends: {
     data() {
       return {
         hero: 'static/images/home/hero.png',
+        bg: 'static/images/home/bg.png',
         logo: 'static/images/logo.png',
         course: 'static/images/home/level1.png',
       };
@@ -110,7 +118,9 @@ export default {
   width: 100%
   @extend ._bcg-cover
   background-attachment: fixed
-
+.bg
+  padding: 24px 0
+  background-repeat: repeat
 @media only screen and (max-width: 600px)
   .hero
     background-attachment: scroll

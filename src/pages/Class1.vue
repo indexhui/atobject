@@ -56,6 +56,22 @@
                 >
                 </div>
               </div>
+              <div v-if="s.ImgCourse[3]">
+                {{s.ImgCourse[3].filename}}
+                 <div
+                  class="imgCourse"
+                  :style="{ 'background-image': 'url(' + s.ImgCourse[3].thumbnails.large.url + ')' }"
+                >
+                </div>
+              </div>
+              <div v-if="s.ImgCourse[4]">
+                {{s.ImgCourse[4].filename}}
+                 <div
+                  class="imgCourse"
+                  :style="{ 'background-image': 'url(' + s.ImgCourse[4].thumbnails.large.url + ')' }"
+                >
+                </div>
+              </div>
           </div>
           <div>學生作品</div>
           <div>報名一律私訊粉絲轉頁</div>
@@ -72,7 +88,7 @@ import { map, set } from 'lodash';
 import Airtable from 'airtable';
 import NavBar from '@/components/NavBar';
 
-const base = new Airtable({ apiKey: 'keyNCBsmapwe9NAJ7' }).base('appQUK6jNfTjos38j');
+const base = new Airtable({ apiKey: 'keyNCBsmapwe9NAJ7' }).base('appyDZKIS0YkuSMAh');
 
 export default {
   name: 'class1',
