@@ -5,6 +5,7 @@ import 'sanitize.css/sanitize.css';
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.css';
 import VueHead from 'vue-head';
+import VueAnalytics from 'vue-analytics';
 
 import router from './router';
 import App from './App';
@@ -13,6 +14,10 @@ Vue.config.productionTip = false;
 
 Vue.use(VueMaterial);
 Vue.use(VueHead);
+Vue.use(VueAnalytics, {
+  id: 'UA-101010438-1',
+  router,
+});
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

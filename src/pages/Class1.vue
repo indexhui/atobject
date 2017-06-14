@@ -6,18 +6,14 @@
         <div class="container">
           <div class="subject_intro">
             <md-layout md-gutter>
-              <md-layout md-column md-gutter class="text">
+              <md-layout md-column md-gutter class="text" v-for="s in class1">
                 <div class="text">
-                  <div class="subject">基礎金工創作班</div>
-                  <div class="notes">本課程適合無基礎金工能力同學參加</div>
+                  <div class="subject">{{s.Course}}</div>
+                  <div class="notes">{{s.Notes}}}</div>
                   <hr>
-                  <div class="dis">基礎金工以紮實基礎工法訓練作為課程學習目標，從金屬原理認識與了解，鋸切金屬入手，練習各式金屬焊接方式，包含金屬表面質感壓印與拋光修整，化學染色等。讓每一位同學都能將心中的設計圖，借由雙手創作出來，我們希望能與同學一起基礎技法練習好，而不僅僅只是做完，而是做好。</div>
+                  <div class="dis">{{s.Discription}}</div>
                   <div class="notes">
-                    上課日期：02/21～04/20，共10周課程<br/>
-                    每週二上課，上午11點上課至下午5點<br/>
-                    課程總時數：50小時<br/>
-                    課程人數：四人開班，最多六人<br/>
-                    課程講師：王安琪<br/>
+                    {{s.Detail}}
                   </div>
                 </div>
               </md-layout>
@@ -134,7 +130,7 @@ export default {
     meta() {
       console.log('meta');
       return [
-        { name: 'og:image', content: this.class1.ImgCourse[0].thumbnails.large.url },
+        { name: 'og:image', content: this.course[0].ImgCourse[0].thumbnails.large.url },
         { name: 'KeyWords', content: '英國投資, 海外房地產, 英國房地產' },
         { name: 'description', content: '冶器物件 金工教學' },
       ];
